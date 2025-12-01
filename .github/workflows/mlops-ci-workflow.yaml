@@ -1,12 +1,7 @@
 name: MLops CI # the name of process
 
-on: # events for push and pull in github repo
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: 
+  workflow_dispatch: {}
 
 jobs: # steps or missions
   e2e_mlops_workflow:
@@ -53,13 +48,13 @@ jobs: # steps or missions
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Set up Docker Buildx 
+      - name: Set up Docker Buildx # it's a builder configuration for docker
         uses: docker/setup-buildx-action@v3
 
       - name: Build Push # for building the images and pull it to dockerhub
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: magdy288/fastapi:${{ github.sha }} # [sha] -> is the tag version for every time the repo changes creating new tag for container 
+          tags: magdy288/fastapi:${{ github.sha }} # [sha] -> is hash the tag version for every time commit the repo changes creating new tag for container 
           context: "." # the dir of Dockerfile
           file: "Dockerfile"
