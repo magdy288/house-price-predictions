@@ -98,7 +98,7 @@ jobs: # step 1
       - name: Wait for MLflow to start # create loop in bash for making sure mlflow up and running before start training the model script
         run: |
           for i in {1..10}; do
-            curl -f http://localhost:5000/health || sleep 5;
+            curl -f http://localhost:5555/health || sleep 5;
           done
     
       - name: Train model # it's for creating the model.pkl file in path models
