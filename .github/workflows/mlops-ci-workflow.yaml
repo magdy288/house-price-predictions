@@ -28,7 +28,21 @@ jobs: # steps or missions
       - name: Do Feature Engineering # create the feature-engin code
         run: |
           python src/features/engineering.py
-      
+
+      - name: Setup MLflow # to run mlflow with docker image before run train model, we add [mlflow-server] name for container to be easly stop next 
+        run: |
+          docker pull ghcr.io/mlflow/mlflow:latest 
+          docker run -d -p 5555:5000 --name mlflow-server ghcr.io/mlflow/mlflow:latest \
+            mlflow server --host 0.0.0.0 \
+            --backend-store-uri sqlite:///mlflow.db \
+            --default-artifact-root /tmp/mlruns
+
       - name: Train the Model # create the model based on config and mlflow
         run: |
           python src/models/trained_model.py
+
+      - name: Cleaning up MLflow # for cleaning mlflow with stop container in container name [mlflow-server]
+        run: |
+          docker stop mlflow-server
+          docker rm mlflow-server
+          docker rmi ghcr.io/mlflow/mlflow:latest
