@@ -35,10 +35,10 @@ jobs: # step 1
 
     steps:
       - name: Checkout code # main for every steps
-        uses: actions/checkout@5
+        uses: actions/checkout@v6
 
       - name: Set up python # main for every steps
-        uses: actions/setup-python@6
+        uses: actions/setup-python@v6
         with:
           python-version: '3.12'
     
@@ -52,7 +52,7 @@ jobs: # step 1
           python src/features/engineering.py
     
       - name: Upload processed data # it's for uploading files while running
-        uses: actions/upload-artifact@4
+        uses: actions/upload-artifact@v4
         with:
           name: processed-data # the name of artifact uploader, we need it later
           path: data/processed/featured_house_data.csv # the path where upload the artifact
@@ -69,10 +69,10 @@ jobs: # step 1
 
     steps:
       - name: Checkout code # repeated
-        uses: actions/checkout@5
+        uses: actions/checkout@v6
 
       - name: Set up python # repeated
-        uses: actions/setup-python@6
+        uses: actions/setup-python@v6
         with:
           python-version: '3.12'
     
