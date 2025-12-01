@@ -166,7 +166,7 @@ jobs: # step 1
         with:
           registry: docker.io # it's log registry 
           username: ${{ vars.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       # line 1: Convert the hash tag git to be smaller
       # line 2: create the tag with [git hash, latest]
