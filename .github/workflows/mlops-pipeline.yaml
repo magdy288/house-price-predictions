@@ -61,7 +61,7 @@ jobs: # step 1
         uses: actions/upload-artifact@v4
         with:
           name: preprocessor
-          path: models/trained/preprocessor.pkl
+          path: models/trained/processor_data.pkl
 
   model-training:
     needs: data_processing # it's depends on run data_processing step
