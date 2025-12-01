@@ -60,6 +60,6 @@ jobs: # steps or missions
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: magdy288/fastapi:{{ github.sha }} # [sha] -> is the tag version for every time the repo changes creating new tag for container 
+          tags: magdy288/fastapi:${{ github.sha }} # [sha] -> is the tag version for every time the repo changes creating new tag for container 
           context: "." # the dir of Dockerfile
           file: "Dockerfile"
