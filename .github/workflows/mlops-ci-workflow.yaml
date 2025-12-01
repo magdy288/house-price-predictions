@@ -1,0 +1,34 @@
+name: MLops CI # the name of process
+
+on: # events for push and pull in github repo
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs: # steps or missions
+  workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code # check the code in repo
+        uses: actions/checkout@v5
+
+      - name: Set up Python # setup python version
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install dependecies # install dependencies with some command
+        run: | # run is CMD and | -> for writing multiple command line
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Do Feature Engineering # create the feature-engin code
+        run: |
+          python src/features/engineering.py
+      
+      - name: Train the Model # create the model based on config and mlflow
+        run: |
+          python src/models/trained_model.py

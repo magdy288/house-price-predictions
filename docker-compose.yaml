@@ -1,0 +1,18 @@
+services:
+  fastapi: # name of service
+    image: magdy288/fastapi:dev # image name
+    build:
+      context: . # to add a current path
+      dockerfile: Dockerfile # the name of docker file
+    ports:
+      - 8000:8000
+  
+  streamlit:
+    image: magdy288/streamlit:dev
+    build:
+      context: ./src/streamlit_app
+      dockerfile: Dockerfile
+    ports:
+      - 8501:8501
+    environment: # adding env variable 
+      API_URL: http://fastapi:8000 # api to connect to fastapi with streamlit
