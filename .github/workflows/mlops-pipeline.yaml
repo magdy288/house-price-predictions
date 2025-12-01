@@ -104,7 +104,7 @@ jobs: # step 1
       - name: Train model # it's for creating the model.pkl file in path models
         run: |
           mkdir -p models
-          python src/models/train_model.py
+          python src/models/trained_model.py
 
       - name: Upload trianed model 
         uses: actions/upload-artifact@v4
