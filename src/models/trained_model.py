@@ -1,18 +1,14 @@
-from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
-from contextlib import nullcontext
+from sklearn.metrics import mean_absolute_error, r2_score
 from mlflow.tracking import MlflowClient
 import pandas as pd
 import numpy as np
-import xgboost as xgb
-import matplotlib.pyplot as plt
 import joblib
 import mlflow
 import mlflow.sklearn
 import yaml
-import os
 import logging
 import platform
 import sklearn
@@ -36,7 +32,6 @@ def get_model_instance(name, params):
         'LinearRegression': LinearRegression,
         'RandomForest': RandomForestRegressor,
         'GradientBoosting': GradientBoostingRegressor,
-        'XGBoost': xgb.XGBRegressor
     }
     if name not in model_map:
         raise ValueError(f'Unsupported model: {name}')
@@ -139,7 +134,6 @@ def main():
         deps = {
             'python_version': platform.python_version(),
             'scikit_learn_version': sklearn.__version__,
-            'xgboost_version': xgb.__version__,
             'pandas_version': pd.__version__,
             'numpy_version': np.__version__,
         }

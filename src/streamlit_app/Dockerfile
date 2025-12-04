@@ -1,10 +1,13 @@
-FROM python:3.12-slim
+FROM python:3.12-slim AS builder
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+
+FROM python:3.12-slim-bookworm AS production
 
 WORKDIR /app
 
 COPY . .
-
-RUN pip install -r requirements.txt
 
 EXPOSE 8501
 
