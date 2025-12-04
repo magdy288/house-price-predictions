@@ -1,5 +1,8 @@
 FROM python:3.12-slim AS builder
 
+WORKDIR /app
+
+
 # install requirements.txt, is exist in [src/api] path
 RUN pip install --no-cache-dir -r requirements.txt
 
