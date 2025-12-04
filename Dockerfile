@@ -1,18 +1,13 @@
-FROM python:3.12-slim AS builder
-
-WORKDIR /app
-
-
-# install requirements.txt, is exist in [src/api] path
-RUN pip install --no-cache-dir -r requirements.txt
-
-FROM python:3.12-slim-bookworm AS production
+FROM python:3.12-slim
 
 # Container path
 WORKDIR /app
 
 # copy our path -> [src/api/] to docker container path -> [/app]
 COPY src/api/ .
+
+# install requirements.txt, is exist in [src/api] path
+RUN pip install -r requirements.txt
 
 # copy our all [model, preprocessor_data].pkl from our dir with [*] to select all files
 # and copy it to [models/trained/] docker path for stand alone models folders in [/app]
