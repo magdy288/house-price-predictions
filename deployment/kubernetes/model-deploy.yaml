@@ -20,5 +20,14 @@ spec:
         name: house-price-model
         ports:
         - containerPort: 8000
-        resources: {}
+        # Adding the resource configuration
+        resources:
+        # requests for scheduling
+          requests:
+            cpu: "50m"
+            memory: "64Mi"
+        # this for hard-limit given to the pod
+          limits:
+          cpu: "100m"
+          memory: "128Mi"
 status: {}
