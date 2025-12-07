@@ -10,3 +10,5 @@ scikit_learn==1.7.2
 streamlit==1.43.2
 mlflow==3.6.0
 prometheus-fastapi-instrumentator==7.1.0
+thread==2.0.5   
+prometheus_client

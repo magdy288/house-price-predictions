@@ -13,8 +13,8 @@ RUN pip install -r requirements.txt
 # and copy it to [models/trained/] docker path for stand alone models folders in [/app]
 COPY models/trained/*.pkl models/trained/
 
-# the port
-EXPOSE 8000
+# the port, 
+EXPOSE 8000 9100
 
 # command run
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"] 
