@@ -22,7 +22,7 @@ spec:
         - containerPort: 8000
         # Adding the resource configuration
         resources:
-        # requests for scheduling
+        # requests for scheduling scaling
           requests:
             cpu: "50m"
             memory: "64Mi"
