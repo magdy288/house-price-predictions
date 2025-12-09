@@ -17,6 +17,7 @@ spec:
     spec:
       containers:
       - image: magdy288/streamlit:dev
+        imagePullPolicy: Always # to always check if new version available for registry in dockerhub and pickup a new version of repo and deploy
         name: streamlit
         ports:
         - containerPort: 8501
